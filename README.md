@@ -2,7 +2,7 @@
 
 **Discovered API-endpoints for the Google Wifi Router and OnHub**
 
-The default submask/IP for the Google Wifi Router is 192.168.86.1, using a Google (TP-LINK) OnHub you should also be able to reach the endpoints via http://onhub.here.
+The default submask/IP for the Google Wifi Router is 192.168.86.1, using a Google (TP-LINK) OnHub you should also be able to reach the endpoints via http://on.here/.
 
 Collecting this information to maybe build a nifty macOS-app further down the road.
 
