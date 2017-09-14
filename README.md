@@ -15,7 +15,30 @@ OnHub-specific
 Displays useful status information for the router
 
 `http://192.168.86.1/api/v1/connected-devices`  
-Seems to require some kind of authentication?
+If you set the `Host` header's value to `localhost` or `onehub.here` you'll get a 200 response with a response with one field, `hueBridges`.
+
+Example use using [httpie](https://httpie.org):
+```
+$ http --print hbHB http://192.168.86.1/api/v1/connected-devices 'Host:onhub.here'
+GET /api/v1/connected-devices HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: onhub.here
+User-Agent: HTTPie/0.9.9
+
+
+
+HTTP/1.1 200 OK
+Connection: Keep-Alive
+Content-Length: 27
+Content-Type: application/json; charset=utf-8
+Date: Wed, 13 Sep 2017 21:47:46 GMT
+
+{
+    "_hueBridges": []
+}
+```
 
 `http://192.168.86.1/api/v1/get-endorsement-information`  
 Just gives the message "device is registered"
