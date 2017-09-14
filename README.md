@@ -15,8 +15,7 @@ OnHub-specific
 Displays useful status information for the router
 
 `http://192.168.86.1/api/v1/connected-devices`  
-Seems to require some kind of authentication?
-**Update:** If you set the `Host` header's value to `localhost` or `onehub.here` you'll get a 200 response with a response with one field, `hueBridges`.
+If you set the `Host` header's value to `localhost` or `onehub.here` you'll get a 200 response with a response with one field, `hueBridges`.
 
 Example use using [httpie](https://httpie.org):
 ```
