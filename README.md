@@ -48,3 +48,39 @@ Just gives the message "device is registered"
 
 `http://192.168.86.1/api/v1/diagnostic-report`  
 Generates a rather large (> 1.1MB) file with some really interesting diagnostics info together with some kind of encoded data-dump.
+
+`http://192.168.86.1/api/v1/get-shmac?ip=<client_ip>`  
+Returns device id for a given IP address. Doesn't work for the router's IP address though.
+
+`http://192.168.86.1/api/v1/wan-configuration`  
+Returns (`GET`) or updates (`POST`) WAN configuration. Configuration could be one of:
+
+- `{ "type": "dhcp" }`
+- `{ "type": "static", "ipAddr": "...", "netmask": "...", "gateway": "..." }`
+- `{ "type": "pppoe", "username": "...", "password": "..." }`
+
+`http://192.168.86.1/api/v1/set-led-state`  
+Expects a `POST` request with Content-Type `application/json` and `{"name":"...", "timeoutSeconds":"..."}` payload.
+
+The only name supported seems to be "setup_activity", and timeout should be an integer string. Even though Google Wifi accepts the request, there's no visual changes in led state. Not sure why.
+
+`http://192.168.86.1/api/v1/developer-configuration`  
+Returns environment information and update url.
+
+#### Other not-so-useful requests found:
+
+`http://192.168.86.1/api/v1/prepare-for-setup`  
+Expects a `POST` request with Content-Type `application/json` and empty object payload.
+
+`http://192.168.86.1/api/v1/register-device`  
+Expects a `POST` request with Content-Type `application/json` and `{ "tickedId": "...", "displayName": "..." }` payload.
+
+`http://192.168.86.1/api/v1/station-mode`  
+Expects a `POST` request, only available in setup mode (would fail otherwise).
+
+`http://192.168.86.1/api/v1/join-group`  
+Expects a `POST` request with Content-Type `application/json` and `{ "groupConfiguration": "...", "kek": "...", "mac": "..." }` payload.
+
+`http://192.168.86.1/api/v1/prove-identity`  
+Expects a `POST` request with Content-Type `application/x-protobuf` and binary payload.
+
