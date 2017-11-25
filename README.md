@@ -46,6 +46,9 @@ Just gives the message "device is registered"
 `http://192.168.86.1/api/v1/get-attestation-information`  
 Just gives the message "device is registered"
 
+`http://192.168.86.1/api/v1/get-group-configuration`
+Returns a value for "groupConfiguration"
+
 `http://192.168.86.1/api/v1/diagnostic-report`  
 Generates a rather large (> 1.1MB) file with some really interesting diagnostics info together with some kind of encoded data-dump.
 
