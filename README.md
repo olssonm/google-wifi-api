@@ -6,18 +6,27 @@ The default submask/IP for the Google Wifi Router is 192.168.86.1, using a Googl
 
 Collecting this information to maybe build a nifty macOS-app further down the road.
 
-### Discovered API-endpoints:
+*Another project of note is [marcosscriven/galeforce](https://github.com/marcosscriven/galeforce) which allows you to root and gain SSH-access to the unit (!).*
 
-`http://192.168.86.1/api/v1/welcome-mat`  
+## Discovered API-endpoints:
+
+```
+http://192.168.86.1/api/v1/welcome-mat
+```
 OnHub-specific
 
-`http://192.168.86.1/api/v1/status`  
+```
+http://192.168.86.1/api/v1/status
+```
 Displays useful status information for the router
 
-`http://192.168.86.1/api/v1/connected-devices`  
+```
+http://192.168.86.1/api/v1/connected-devices
+```
 If you set the `Host` header's value to `localhost` or `onehub.here` you'll get a 200 response with a response with one field, `hueBridges`.
 
 Example use using [httpie](https://httpie.org):
+
 ```
 $ http --print hbHB http://192.168.86.1/api/v1/connected-devices 'Host:onhub.here'
 GET /api/v1/connected-devices HTTP/1.1
@@ -40,50 +49,75 @@ Date: Wed, 13 Sep 2017 21:47:46 GMT
 }
 ```
 
-`http://192.168.86.1/api/v1/get-endorsement-information`  
+```
+http://192.168.86.1/api/v1/get-endorsement-information
+```
 Just gives the message "device is registered"
 
-`http://192.168.86.1/api/v1/get-attestation-information`  
-Just gives the message "device is registered"
+```
+http://192.168.86.1/api/v1/get-attestation-information
+```
+Returns the message "device is registered"
 
-`http://192.168.86.1/api/v1/get-group-configuration`
+```
+http://192.168.86.1/api/v1/get-group-configuration
+```
 Returns a value for "groupConfiguration"
 
-`http://192.168.86.1/api/v1/diagnostic-report`  
+```
+http://192.168.86.1/api/v1/diagnostic-report
+```
 Generates a rather large (> 1.1MB) file with some really interesting diagnostics info together with some kind of encoded data-dump.
 
-`http://192.168.86.1/api/v1/get-shmac?ip=<client_ip>`  
+```
+http://192.168.86.1/api/v1/get-shmac?ip=<client_ip>
+```
 Returns device id for a given IP address. Doesn't work for the router's IP address though.
 
-`http://192.168.86.1/api/v1/wan-configuration`  
+```
+http://192.168.86.1/api/v1/wan-configuration
+```
 Returns (`GET`) or updates (`POST`) WAN configuration. Configuration could be one of:
 
 - `{ "type": "dhcp" }`
 - `{ "type": "static", "ipAddr": "...", "netmask": "...", "gateway": "..." }`
 - `{ "type": "pppoe", "username": "...", "password": "..." }`
 
-`http://192.168.86.1/api/v1/set-led-state`  
+```
+http://192.168.86.1/api/v1/set-led-state
+```
 Expects a `POST` request with Content-Type `application/json` and `{"name":"...", "timeoutSeconds":"..."}` payload.
 
 The only name supported seems to be "setup_activity", and timeout should be an integer string. Even though Google Wifi accepts the request, there's no visual changes in led state. Not sure why.
 
-`http://192.168.86.1/api/v1/developer-configuration`  
+```
+http://192.168.86.1/api/v1/developer-configuration
+```
 Returns environment information and update url.
 
-#### Other not-so-useful requests found:
+### Other not-so-useful requests found:
 
-`http://192.168.86.1/api/v1/prepare-for-setup`  
+```
+http://192.168.86.1/api/v1/prepare-for-setup
+```
 Expects a `POST` request with Content-Type `application/json` and empty object payload.
 
-`http://192.168.86.1/api/v1/register-device`  
+```
+http://192.168.86.1/api/v1/register-device
+```
 Expects a `POST` request with Content-Type `application/json` and `{ "tickedId": "...", "displayName": "..." }` payload.
 
-`http://192.168.86.1/api/v1/station-mode`  
+```
+http://192.168.86.1/api/v1/station-mode
+```
 Expects a `POST` request, only available in setup mode (would fail otherwise).
 
-`http://192.168.86.1/api/v1/join-group`  
+```
+http://192.168.86.1/api/v1/join-group
+```
 Expects a `POST` request with Content-Type `application/json` and `{ "groupConfiguration": "...", "kek": "...", "mac": "..." }` payload.
 
-`http://192.168.86.1/api/v1/prove-identity`  
+```
+http://192.168.86.1/api/v1/prove-identity
+```
 Expects a `POST` request with Content-Type `application/x-protobuf` and binary payload.
-
