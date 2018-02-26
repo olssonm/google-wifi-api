@@ -121,3 +121,13 @@ Expects a `POST` request with Content-Type `application/json` and `{ "groupConfi
 http://192.168.86.1/api/v1/prove-identity
 ```
 Expects a `POST` request with Content-Type `application/x-protobuf` and binary payload.
+
+---
+
+### Copyrights and licence
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+"Google", "Google Wifi" and "OnHub" are properties and trademarks of Google LLC. ©2017 Google LLC. Google and the Google Logo are registered trademarks of Google LLC.
+
+© 2017 [Marcus Olsson](https://marcusolsson.me).
