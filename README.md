@@ -23,7 +23,7 @@ Displays useful status information for the router
 ```
 http://192.168.86.1/api/v1/connected-devices
 ```
-If you set the `Host` header's value to `localhost` or `onehub.here` you'll get a 200 response with a response with one field, `hueBridges`.
+If you set the `Host` header's value to `localhost` or `onhub.here` you'll get a 200 response with a response with one field, `hueBridges`.
 
 Example use using [httpie](https://httpie.org):
 
